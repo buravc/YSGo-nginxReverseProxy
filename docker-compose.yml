@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  nginx:
+    container_name: "nginx"
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    ports:
+      - "80:80"
+    restart: always
+    expose:
+      - "80"
+    networks:
+      app_net:
+networks:
+  app_net:
+    name: "YSGoNetwork"
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.14.0/24"
